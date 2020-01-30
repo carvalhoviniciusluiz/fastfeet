@@ -34,6 +34,10 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
+<p align="center">
+  <a href="https://insomnia.rest/run/?label=Fastfeet&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcarvalhoviniciusluiz%2Ffastfeet%2Fmaster%2F.github%2Fexport.json%3Ftoken%3DAFH4PNFBI35A64MIYC4MA2C6GJFQE" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+</p>
+
 ## :rocket: Sobre o desafio
 
 A aplicação que iremos dar início ao desenvolvimento a partir de agora é um app para uma transportadora fictícia, o FastFeet.

@@ -4,3 +4,4 @@ tmp/uploads/*
 .env
 .DS_Store
 __tests__/coverage
+database.sqlite

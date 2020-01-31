@@ -1,23 +1,17 @@
 import url from 'url';
 
-const {
-  PROTOCOL: { protocol = 'http' },
-  HOST: { host = 'localhost' },
-  PORT: { port = 3333 },
-} = process.env;
-
 const Helper = {};
 
 Helper.prettyHost = () => {
-  const formatUrl = hostname =>
+  const formatUrl = () =>
     url.format({
-      protocol,
-      hostname,
-      port,
+      protocol: process.env.PROTOCOL || 'http',
+      hostname: process.env.HOST || '127.0.0.1',
+      port: process.env.PORT || 3333,
       pathname: '',
     });
 
-  return formatUrl(host);
+  return formatUrl();
 };
 
 export default Helper;

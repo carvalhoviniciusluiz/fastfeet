@@ -19,8 +19,8 @@
 </p>
 
 <p align="center">
-  <a href="#rocket-sobre-o-desafio">Sobre o desafio</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-entrega">Entrega</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
 
@@ -47,7 +47,7 @@ __OBS__ O banco pode ser levantado via docker:
 docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 ```
 
-### **Funcionalidades**
+## :loop: Funcionalidades
 
 Abaixo estão descritas as funcionalidades da aplicação.
 

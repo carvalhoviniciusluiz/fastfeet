@@ -90,7 +90,7 @@ O destinatário não é autenticado no sistema, ou seja, não possui senha.
 
 Obs.: Use a sessão `Run in Insomnia` para acessar as rotas.
 
-### **1. Gestão de entregadores**
+### **3. Gestão de entregadores**
 
 O administrador pode cadastrar entregadores (listados/cadastrados/atualizados/removidos) para a plataforma, o entregador possui os seguintes campos:
 

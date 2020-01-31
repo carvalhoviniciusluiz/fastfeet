@@ -2,23 +2,13 @@
   <img alt="Fastfeet" title="Fastfeet" src=".github/logo.png" width="300px" />
 </h1>
 
-<h3 align="center">
-  Desafio 2: FastFeet, o início
-</h3>
-
-<h3 align="center">
-  :warning: Etapa 1/4 do Desafio Final :warning:
-</h3>
-
-<p>Esse desafio faz parte do Desafio Final, que é uma aplicação completa (Back-end, Front-end e Mobile) que é avaliada para emissão do Certificado do Bootcamp GoStack, por isso é fundamental que ele seja feito com muito empenho!</p>
-
 <blockquote align="center">“Não espere para plantar, apenas tenha paciência para colher”!</blockquote>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/rocketseat/bootcamp-gostack-desafio-02?color=%2304D361">
+  <img alt="Challenge 03" src="https://img.shields.io/badge/challenge-03-%2304D361">
 
-  <a href="https://rocketseat.com.br">
-    <img alt="Made by Rocketseat" src="https://img.shields.io/badge/made%20by-Rocketseat-%2304D361">
+  <a href="https://github.com/carvalhoviniciusluiz">
+    <img alt="Made by Vinicius Carvalho" src="https://img.shields.io/badge/made%20by-Vinicius%20Carvalho-%2304D361">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
@@ -38,85 +28,53 @@
   <a href="https://insomnia.rest/run/?label=Fastfeet&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcarvalhoviniciusluiz%2Ffastfeet%2Fmaster%2F.github%2Fexport.json%3Ftoken%3DAFH4PNFBI35A64MIYC4MA2C6GJFQE" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </p>
 
-## :rocket: Sobre o desafio
+## :rocket: Sobre o projeto
 
-A aplicação que iremos dar início ao desenvolvimento a partir de agora é um app para uma transportadora fictícia, o FastFeet.
+A aplicação é um app para uma transportadora fictícia, o FastFeet.
 
-Nesse primeiro desafio vamos criar algumas funcionalidades básicas que aprendemos ao longo das aulas até aqui. Esse projeto será desenvolvido aos poucos até o fim da sua jornada onde você terá uma aplicação completa envolvendo back-end, front-end e mobile, que será utilizada para a **certificação do bootcamp**, então, bora pro código!
+### **As ferramentas que você irá encontrar**
 
-### **Um pouco sobre as ferramentas**
-
-Você deverá criar a aplicação do zero utilizando o [Express](https://expressjs.com/), além de precisar configurar as seguintes ferramentas:
+Aplicação criada do zero usando [Express](https://expressjs.com/), conta com as seguintes ferramentas:
 
 - Sucrase + Nodemon;
 - ESLint + Prettier + EditorConfig;
-- Sequelize (Utilize PostgreSQL ou MySQL);
+- Sequelize (PostgreSQL);
+- Jest
 
-__OBS__ Para subir um banco de dados Postgres no docker:
+__OBS__ O banco pode ser levantado via docker:
+
 ```js
 docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 ```
 
 ### **Funcionalidades**
 
-Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplicação.
+Abaixo estão descritas as funcionalidades da aplicação.
 
 ### **1. Autenticação**
 
-Permita que um usuário se autentique em sua aplicação utilizando e-mail e uma senha.
+- O usuário deve se autenticar na aplicação utilizando e-mail e uma senha.
 
-Crie um usuário administrador utilizando a funcionalidade de [seeds do sequelize](https://sequelize.org/master/manual/migrations.html#creating-first-seed), essa funcionalidade serve para criarmos registros na base de dados de forma automatizada.
+A criação do usuário administrador utiliza a funcionalidade de [seeds do sequelize](https://sequelize.org/master/manual/migrations.html#creating-first-seed), essa funcionalidade é usada para criar registros na base de dados de forma automatizada e o código fonte pode ser visualizado [clicando aqui](https://github.com/carvalhoviniciusluiz/fastfeet/blob/master/src/database/seeds/20200128174234-admin-user.js).
 
-Para criar um seed utilize o comando:
-
-    yarn sequelize seed:generate --name admin-user
-
-No arquivo gerado na pasta `src/database/seeds` adicione o código referente à criação de um usuário administrador:
-
-    const bcrypt = require("bcryptjs");
-
-    module.exports = {
-      up: QueryInterface => {
-        return QueryInterface.bulkInsert(
-          "users",
-          [
-            {
-              name: "Distruidora FastFeet",
-              email: "admin@fastfeet.com",
-              password_hash: bcrypt.hashSync("123456", 8),
-              created_at: new Date(),
-              updated_at: new Date()
-            }
-          ],
-          {}
-        );
-      },
-
-      down: () => {}
-    };
-
-Agora execute:
+Para executar rode no terminal:
 
     yarn sequelize db:seed:all
 
-Agora você tem um usuário na sua base de dados, utilize esse usuário para todos os logins que você fizer.
+Todos os logins são realizados a partir do usuário inserido via seed.
 
-- A autenticação deve ser feita utilizando JWT.
-- Realize a validação dos dados de entrada;
+- A autenticação é feita via JWT.
+- Todos os daos de entrada são validados;
 
-### 2. Gestão de destinatários
+### 2. Destinatários
 
-Você agora precisa permitir que destinatários sejam mantidos (cadastrados/atualizados) na aplicação, e esses devem ter o **nome** do destinatário e campos de endereço: **rua**, **número**, **complemento**, **estado**, **cidade** e **CEP**.
+Você pode marter destinatários (cadastrados/atualizados) na aplicação, eles possuem **nome** do destinatário e campos de endereço: **rua**, **número**, **complemento**, **estado**, **cidade** e **CEP**.
 
-Utilize uma nova tabela no banco de dados chamada `recipient` para guardar informações do destinatário.
+A tabela no banco de dados para armazenamento do destinatário se chama `recipient`.
 
-O cadastro de destinatários só pode ser feito por administradores autenticados na aplicação.
+O cadastro de destinatários só é feito por administradores autenticados na aplicação.
 
-O destinatário não pode se autenticar no sistema, ou seja, não possui senha.
-
-## 📅 Entrega
-
-Esse desafio **não precisa ser entregue** e não receberá correção. Além disso, o código fonte **não está disponível** por fazer parte do **desafio final**, que será corrigido para **certificação** do bootcamp. Após concluir o desafio, adicionar esse código ao seu Github é uma boa forma de demonstrar seus conhecimentos para oportunidades futuras.
+O destinatário não é autenticado no sistema, ou seja, não possui senha.
 
 ## :memo: Licença
 
@@ -124,4 +82,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 
 ---
 
-Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discordapp.com/invite/gCRAFhc)
+Feito com ♥ by Vinícius para a Rocketseat :wave: [NOSSA COMUNIDADE!](https://discordapp.com/invite/gCRAFhc)

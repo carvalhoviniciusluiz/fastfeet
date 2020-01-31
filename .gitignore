@@ -3,3 +3,4 @@ tmp/uploads/*
 !tmp/uploads/.gitkeep
 .env
 .DS_Store
+__tests__/coverage

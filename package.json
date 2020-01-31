@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js --ignore __tests__",
+    "dev": "nodemon src/server.js",
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
@@ -25,6 +25,8 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "@types/jest": "^25.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.10.0",

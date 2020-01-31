@@ -66,15 +66,47 @@ Todos os logins são realizados a partir do usuário inserido via seed.
 - A autenticação é feita via JWT.
 - Todos os daos de entrada são validados;
 
-### 2. Destinatários
+### **2. Gestão de destinatários**
 
-Você pode marter destinatários (cadastrados/atualizados) na aplicação, eles possuem **nome** do destinatário e campos de endereço: **rua**, **número**, **complemento**, **estado**, **cidade** e **CEP**.
+Você pode cadastrar destinatários (cadastrados/atualizados) na plataforma, o destinatários possui os seguintes campos:
+
+- id (id do destinatário)
+- name (nome do destinatário);
+- street (rua do destinatário)
+- street_number (número do destinatário)
+- complement (opcional)
+- neighborhood (bairro do destinatário)
+- state (estado do destinatário)
+- city (cidade do destinatário)
+- zip_code (CEP do destinatário)
+- created_at;
+- updated_at;
 
 A tabela no banco de dados para armazenamento do destinatário se chama `recipient`.
 
 O cadastro de destinatários só é feito por administradores autenticados na aplicação.
 
 O destinatário não é autenticado no sistema, ou seja, não possui senha.
+
+Obs.: Use a sessão `Run in Insomnia` para acessar as rotas.
+
+### **1. Gestão de entregadores**
+
+O administrador pode cadastrar entregadores (listados/cadastrados/atualizados/removidos) para a plataforma, o entregador possui os seguintes campos:
+
+- id (id do entregador)
+- name (nome do entregador);
+- avatar_id (foto do entregador);
+- email (email do entregador)
+- canceled_at (entregador removido)
+- created_at;
+- updated_at;
+
+A tabela no banco de dados para armazenamento do destinatário se chama `couriers`.
+
+O cadastro de entregadores só é feito por administradores autenticados na aplicação.
+
+Obs.: Use a sessão `Run in Insomnia` para acessar as rotas.
 
 ## :memo: Licença
 

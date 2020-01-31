@@ -1,3 +1,5 @@
+import './bootstrap';
+
 import express from 'express';
 import Youch from 'youch';
 import path from 'path';
@@ -9,10 +11,6 @@ import routes from './routes';
 import sentryConfig from './config/sentry';
 
 import './database';
-
-require('dotenv').config({
-  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
-});
 
 class App {
   constructor() {

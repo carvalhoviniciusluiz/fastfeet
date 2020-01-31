@@ -1,6 +1,4 @@
-require('dotenv').config({
-  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
-});
+require('../bootstrap');
 
 module.exports = {
   host: process.env.DB_HOST,

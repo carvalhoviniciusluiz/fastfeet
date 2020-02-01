@@ -1,27 +1,22 @@
 import request from 'supertest';
 import app from '../../src/app';
 
+import factory from '../factories';
 import truncate from '../util/truncate';
 
 describe('Session', () => {
   beforeEach(truncate);
 
   it('should return jwt token when authenticated', async () => {
-    const {
-      body: { email },
-    } = await request(app)
-      .post('/users')
-      .send({
-        name: 'Vinicius Carvalho',
-        email: 'carvalho.viniciusluiz@gmail.com',
-        password: '123123',
-      });
+    const user = await factory.create('User', {
+      password: '123456',
+    });
 
     const response = await request(app)
       .post('/sessions')
       .send({
-        email,
-        password: '123123',
+        email: user.email,
+        password: '123456',
       });
 
     expect(response.status).toBe(200);
@@ -30,18 +25,14 @@ describe('Session', () => {
 
   it('should not authenticate with invalid credentials', async () => {
     try {
-      const response = await request(app)
-        .post('/users')
-        .send({
-          name: 'Vinicius Carvalho',
-          email: 'carvalho.viniciusluiz@gmail.com',
-          password: '123123',
-        });
+      const user = await factory.create('User', {
+        password: '123123',
+      });
 
       await request(app)
         .post('/sessions')
         .send({
-          email: response.body.email,
+          email: user.email,
           password: '123456',
         });
     } catch (e) {
@@ -50,20 +41,28 @@ describe('Session', () => {
   });
 
   it('should not authenticate with user not found', async () => {
+    const { email, password } = await factory.attrs('User');
     try {
       await request(app)
         .post('/sessions')
         .send({
-          email: 'carvalho.juliamarques@gmail.com',
-          password: '123456',
+          email,
+          password,
         });
     } catch (e) {
       expect(e.status).toBe(401);
     }
   });
 
-  // @TODO
-  // it('should be able to access private routes when authenticated', () => {});
+  it('should be able to access private routes when authenticated', async () => {
+    const user = await factory.create('User');
+
+    const response = await request(app)
+      .get('/users')
+      .set('Authorization', `Bearer ${user.generateToken()}`);
+
+    expect(response.status).toBe(200);
+  });
 
   it('should not be able to access private routes without jwt token', async () => {
     try {

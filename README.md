@@ -108,6 +108,33 @@ O cadastro de entregadores só é feito por administradores autenticados na apli
 
 Obs.: Use a sessão `Run in Insomnia` para acessar as rotas.
 
+### **4. Gestão de encomendas**
+
+Cadastro de encomenda para os entregadores com listagem/cadastro/atualização/remoção de encomendas.
+
+Funcionalidade criada para cadastrar encomendas por entregador, a encomenda possui os campos:
+
+- id (id da entrega)
+- recipient_id (referência ao destinatário);
+- deliveryman_id (referência ao entregador);
+- signature_id (referência à uma assinatura do destinatário, que será uma imagem);
+- product (nome do produto a ser entregue);
+- canceled_at (data de cancelamento, se cancelada);
+- start_date (data de retirada do produto);
+- end_date (data final da entrega);
+- created_at;
+- updated_at;
+
+A data de início é cadastrada assim que é feita a retirada do produto pelo entregador, e as retiradas são feitas entre 08:00 e 18:00h.
+
+A data de término da entrega é cadastrada quando o entregador finalizar a entrega:
+
+Quando a encomenda é cadastrada para um entregador, o entregador recebe um e-mail com detalhes da encomenda, com nome do produto e uma mensagem informando-o que o produto já está disponível para a retirada.
+
+Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
+
+Obs.: Use a sessão `Run in Insomnia` para acessar as rotas.
+
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.

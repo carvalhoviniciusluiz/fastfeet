@@ -7,16 +7,6 @@ import truncate from '../util/truncate';
 describe('User', () => {
   beforeEach(truncate);
 
-  it('should check user password is valid', async () => {
-    const user = await factory.create('User', {
-      password: '123456',
-    });
-
-    const checkPassword = await user.checkPassword('123456');
-
-    expect(checkPassword).toBe(true);
-  });
-
   it('should be able to register', async () => {
     const user = await factory.attrs('User');
 

@@ -31,7 +31,6 @@ module.exports = {
       product: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       canceled_at: {
         type: Sequelize.DATE,

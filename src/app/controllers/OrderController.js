@@ -3,6 +3,9 @@ import File from '../models/File';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 
+import OrderDetailsMail from '../jobs/OrderDetailsMail';
+import Queue from '../../lib/Queue';
+
 class OrderController {
   async index(req, res) {
     const { page = 1, per_page = 20 } = req.query;
@@ -67,7 +70,7 @@ class OrderController {
 
     const { recipient_id, deliveryman_id, signature_id, product } = req.body;
 
-    const order = await Order.create({
+    const { id: orderId } = await Order.create({
       recipient_id,
       deliveryman_id,
       signature_id,
@@ -75,10 +78,41 @@ class OrderController {
       start_date: new Date(),
     });
 
-    // @TODO
-    // deve envitar um email para o entregador:
-    // - nome do produto
-    // - mensagem informando-o que o produto já está disponível para a retirada
+    const order = await Order.findByPk(orderId, {
+      include: [
+        {
+          model: Recipient,
+          as: 'recipient',
+          attributes: [
+            'id',
+            'name',
+            'street',
+            'street_number',
+            'complement',
+            'neighborhood',
+            'state',
+            'city',
+            'zip_code',
+          ],
+        },
+        {
+          model: Deliveryman,
+          as: 'deliveryman',
+          attributes: ['id', 'name', 'email', 'canceled_at'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
+        },
+      ],
+    });
+
+    await Queue.add(OrderDetailsMail.key, {
+      order,
+    });
 
     return res.json(order);
   }

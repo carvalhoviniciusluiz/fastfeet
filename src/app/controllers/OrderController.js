@@ -7,6 +7,12 @@ import OrderDetailsMail from '../jobs/OrderDetailsMail';
 import Queue from '../../lib/Queue';
 
 class OrderController {
+  scheduleReleased() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    return currentHour >= 8 && currentHour <= 18;
+  }
+
   async index(req, res) {
     const { page = 1, per_page = 20 } = req.query;
 
@@ -58,11 +64,7 @@ class OrderController {
   }
 
   async store(req, res) {
-    const now = new Date();
-    const currentHour = now.getHours();
-    const scheduleReleased = currentHour >= 8 && currentHour <= 18;
-
-    if (!scheduleReleased) {
+    if (!this.scheduleReleased()) {
       return res.status(400).json({
         error: 'You can only pick up a product from 8:00 am to 18:00 pm.',
       });
@@ -118,11 +120,7 @@ class OrderController {
   }
 
   async update(req, res) {
-    const now = new Date();
-    const currentHour = now.getHours();
-    const scheduleReleased = currentHour >= 8 && currentHour <= 18;
-
-    if (!scheduleReleased) {
+    if (!this.scheduleReleased()) {
       return res.status(400).json({
         error: 'You can only pick up a product from 8:00 am to 18:00 pm.',
       });
@@ -136,11 +134,7 @@ class OrderController {
   }
 
   async delete(req, res) {
-    const now = new Date();
-    const currentHour = now.getHours();
-    const scheduleReleased = currentHour >= 8 && currentHour <= 18;
-
-    if (!scheduleReleased) {
+    if (!this.scheduleReleased()) {
       return res.status(400).json({
         error: 'You can only pick up a product from 8:00 am to 18:00 pm.',
       });

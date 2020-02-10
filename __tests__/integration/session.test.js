@@ -58,7 +58,7 @@ describe('Session', () => {
     const user = await factory.create('User');
 
     const response = await request(app)
-      .get('/users')
+      .get('/orders')
       .set('Authorization', `Bearer ${user.generateToken()}`);
 
     expect(response.status).toBe(200);

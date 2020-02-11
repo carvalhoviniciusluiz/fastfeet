@@ -77,7 +77,6 @@ class OrderController {
       deliveryman_id,
       signature_id,
       product,
-      start_date: new Date(),
     });
 
     const order = await Order.findByPk(orderId, {

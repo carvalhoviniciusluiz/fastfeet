@@ -7,6 +7,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import RecipientController from './app/controllers/RecipientController';
+import DeliveryController from './app/controllers/DeliveryController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import OrderController from './app/controllers/OrderController';
 
@@ -34,6 +35,8 @@ routes.put(
   RecipientController.update
 );
 routes.post('/recipients', RecipientStoreOrUpdate, RecipientController.store);
+
+routes.get('/deliveryman/:id/deliveries', DeliveryController.index);
 
 routes.get('/couriers', DeliverymanController.index);
 routes.post('/couriers', DeliverymanController.store);
